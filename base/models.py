@@ -1,5 +1,7 @@
 # Create your models here.
 from datetime import datetime, timezone
+
+import django
 from django.db import models
 
 class BaseAbstractModel(models.Model):
@@ -9,7 +11,7 @@ class BaseAbstractModel(models.Model):
     This model will be designed as a parent model for every other models
     """
     created_at = models.DateTimeField()
-    updated_at = models.DateTimeField(default=datetime.now())
+    updated_at = models.DateTimeField(default=django.utils.timezone.now)
 
     class Meta:
         abstract = True

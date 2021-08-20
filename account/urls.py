@@ -1,10 +1,13 @@
-from django.urls import path
+from django.urls import include, path
 from rest_framework_simplejwt import views as jwt_views
 #
 from account.views import LogoutView
 from account.views.custom_user_api_view import CustomUser
 from account.views.edit_user_api_view import EditUser
 from account.views.login_view import LoginView
+from rest_framework import routers
+
+from account.views.user_based_news_config_api_view import UserBasedNewsConfigApiView, UserBasedNewsConfigApiDetailView
 
 urlpatterns = [
     path('login/', LoginView.as_view(), name="login"),
@@ -13,4 +16,7 @@ urlpatterns = [
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('api/create-user/', CustomUser.as_view(), name='create_user'),
     # path('api/edit-user/', EditUser.as_view(), name='edit_user'),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/user-settings', UserBasedNewsConfigApiView.as_view(), name="user_settings"),
+    path('api/user-settings/<pk>', UserBasedNewsConfigApiDetailView.as_view(), name="user_settings"),
 ]
