@@ -1,0 +1,31 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block extra_css %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form method="POST">{% csrf_token %}
+                    <input class="form-control" name="country" type="text" placeholder="Default input"
+                           value="{{ user_config.country }}">
+                    <input class="form-control" type="text" placeholder="Default input" name="news_sources"
+                           value="{{ user_config.news_sources }}">
+                    <input class="form-control" type="text" placeholder="Default input" name="news_keywords"
+                           value="{{ user_config.news_keywords }}">
+                    <button type="submit" class="btn btn-secondary">Submit</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+
+
+{% endblock %}

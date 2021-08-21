@@ -9,6 +9,7 @@ from account.views.login_view import LoginView
 from rest_framework import routers
 
 from account.views.logout_api_view import LogoutApiView
+from account.views.profile_view import ProfileView
 from account.views.user_based_news_config_api_view import UserBasedNewsConfigApiView, UserBasedNewsConfigApiDetailView
 from account.views.user_registration_view import UserRegistrationView
 
@@ -26,4 +27,5 @@ urlpatterns = [
     path('api/user-settings/<pk>/', UserBasedNewsConfigApiDetailView.as_view(), name="user_settings_detail"),
     path('api/token-auth/', obtain_auth_token, name='api_token_auth'),
     path('api/logout/', LogoutApiView.as_view()),
+    path('profile/', ProfileView.as_view(), name="user_profile"),
 ]

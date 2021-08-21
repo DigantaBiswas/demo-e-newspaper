@@ -3,6 +3,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
 from django.views import View
 
+from account.models import UserBasedNewsConfig
+
+
 class UserRegistrationView(View):
     def get(self,request):
         form = UserCreationForm(request.POST)
@@ -16,6 +19,9 @@ class UserRegistrationView(View):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
+
+            UserBasedNewsConfig.create_user_config(user)
+
             return redirect('home')
 
         return render(request, 'signup.html', {'form': form})
