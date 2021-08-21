@@ -10,10 +10,12 @@ from rest_framework import routers
 
 from account.views.logout_api_view import LogoutApiView
 from account.views.user_based_news_config_api_view import UserBasedNewsConfigApiView, UserBasedNewsConfigApiDetailView
+from account.views.user_registration_view import UserRegistrationView
 
 urlpatterns = [
     path('login/', LoginView.as_view(), name="login"),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('sign-up/', UserRegistrationView.as_view(), name='signup'),
     # path('api/login-token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     # path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('api/user/', CustomUserApiView.as_view(), name='user'),
