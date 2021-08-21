@@ -31,7 +31,7 @@ def schedule_populate_news_data():
             if latest_news:
                 if published_datetime_object > latest_news.published_at:
                     new_object = NewsArticles()
-                    new_object.sources = source
+                    new_object.sources = source.get("name")
                     new_object.news_author = author
                     new_object.headline = title
                     new_object.description = description
@@ -42,7 +42,7 @@ def schedule_populate_news_data():
                     new_object.save()
             else:
                new_object = NewsArticles()
-               new_object.sources = source
+               new_object.sources = source.get("name")
                new_object.news_author = author
                new_object.headline = title
                new_object.description = description

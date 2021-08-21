@@ -7,7 +7,7 @@ from base.models import BaseAbstractModel
 
 
 class NewsArticles(BaseAbstractModel):
-    sources = models.JSONField(blank=True)
+    sources = models.CharField(max_length=255, blank=True, null=True)
     news_author = models.CharField(max_length=255, blank=True, null=True)
     headline = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
