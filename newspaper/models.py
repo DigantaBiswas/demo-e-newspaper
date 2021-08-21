@@ -19,14 +19,18 @@ class NewsArticles(BaseAbstractModel):
     class Meta:
         app_label = "newspaper"
 
-
-    def news_api_fetch_with_country_source(self, country="us", sources="bbc-news,the-verge", q=None):
+    @staticmethod
+    def news_api_fetch_top_headline_with_country_source(country="us", sources="bbc-news,the-verge", q=None):
         newsapi = NewsApiClient(api_key='158c339162d945d38f981a53096b103e')
 
+
+
         # /v2/top-headlines
-        top_headlines = newsapi.get_top_headlines(q=q,
-                                                  sources=sources,
-                                                  # category='business',
-                                                  language='en',
-                                                  country=country)
+        # top_headlines = newsapi.get_top_headlines(q=q,
+        #                                           sources=sources,
+        #                                           # category='business',
+        #                                           language='en',
+        #                                           country=country)
+
+        top_headlines = newsapi.get_top_headlines(language='en')
         return top_headlines

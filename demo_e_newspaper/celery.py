@@ -36,7 +36,7 @@ app.conf.broker_url = BASE_REDIS_URL
 app.conf.beat_schedule = {
     'add-every-30-seconds': {
         'task': 'newspaper.tasks.tasks.schedule_populate_news_data',
-        'schedule': 30,
+        'schedule': crontab(minute='1'),
         # 'args': (),
     },
 }
