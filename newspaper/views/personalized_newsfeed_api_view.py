@@ -28,7 +28,7 @@ class PersonalizedNewsFeedApiView(APIView, PaginationHandlerMixin):
         news_articles = NewsArticles.objects.all()
         if config:
             if config.news_sources:
-                news_articles = news_articles.filter(sources__icontains=config.split(","))
+                news_articles = news_articles.filter(sources__icontains=config.news_sources.split(","))
 
             if config.news_keywords:
                 news_articles = news_articles.filter(Q(sources__icontains=config.news_keywords.split(",")) | Q(

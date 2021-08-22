@@ -5,6 +5,7 @@ from datetime import datetime
 from celery import shared_task
 from celery import app
 from django.contrib.auth.models import User
+from pytz import utc
 
 from demo_e_newspaper.celery import app
 from newspaper.models import NewsArticles
@@ -27,6 +28,7 @@ def schedule_populate_news_data():
             content = article.get("content")
             published = article.get('publishedAt')
             published_datetime_object = datetime.strptime(published, '%Y-%m-%dT%H:%M:%Sz')
+            published_datetime_object = utc.localize(published_datetime_object)
 
             if latest_news:
                 if published_datetime_object > latest_news.published_at:
