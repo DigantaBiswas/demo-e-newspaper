@@ -66,7 +66,7 @@
 
                 <div class="d-flex justify-content-center ">
                     {% if not user.is_authenticated %}
-                        <a class="pl-5" id="signup" href="#signup">Sign Up</a>
+                        <a class="pl-5" id="signup" href={% url 'signup' %}>Sign Up</a>
                         <a class="pl-5" id="login" href={% url 'login' %}>Sign in</a>
                     {% endif %}
 

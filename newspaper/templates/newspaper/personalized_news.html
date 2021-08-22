@@ -7,19 +7,23 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col">
-                {% for news_article in news_articles %}
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ news_article.image_url }}" alt="Card image cap">
 
-                    <div class="card-body">
-                        <h5 class="card-title">{{ news_article.headline }}</h5>
-                        <p class="card-text">{{ news_article.sources }}</p>
+            {% for news_article in news_articles %}
+                <div class="col-4">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="{{ news_article.image_url }}" alt="Card image cap">
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ news_article.headline }}</h5>
+                            <p class="card-text">{{ news_article.sources }}</p>
+                            <a target="_blank" rel="noopener noreferrer" href="{{ news_article.news_url }}" class="card-link">Got to news</a>
+
+                        </div>
                     </div>
                 </div>
-                {% endfor %}
+            {% endfor %}
 
-            </div>
+
         </div>
     </div>
 

@@ -148,3 +148,4 @@ CELERY_TIMEZONE = 'Asia/Dhaka'
 CELERY_IMPORTS = [
     'newspaper.tasks.tasks'
 ]
+LOGIN_REDIRECT_URL = '/'

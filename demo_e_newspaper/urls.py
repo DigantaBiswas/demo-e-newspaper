@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from newspaper.views.home_view import HomeView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('account.urls')),
     path('newspaper/', include('newspaper.urls')),
+    path("", HomeView.as_view(), name="home")
 ]
