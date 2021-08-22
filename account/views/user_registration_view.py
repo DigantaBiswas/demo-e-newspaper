@@ -22,6 +22,6 @@ class UserRegistrationView(View):
 
             UserBasedNewsConfig.create_user_config(user)
 
-            return redirect('home')
+            return redirect('/')
 
-        return render(request, 'signup.html', {'form': form})
+        raise Exception(form.errors)

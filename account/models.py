@@ -17,7 +17,7 @@ class UserBasedNewsConfig(BaseAbstractModel):
     @classmethod
     def create_user_config(cls, user, country=None, news_sources=None, news_keywords=None):
         if not cls.objects.filter(user_id=user.id):
-            new_obj = cls
+            new_obj = cls()
             new_obj.user = user
             if country:
                 new_obj.country = country
