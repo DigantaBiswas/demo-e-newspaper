@@ -21,6 +21,8 @@ class ProfileView(View):
         news_keywords = request.POST.get("news_keywords")
         news_sources = request.POST.get("news_sources")
         user_config = UserBasedNewsConfig.objects.filter(user_id=request.user.id).last()
+        if not user_config:
+            user_config = UserBasedNewsConfig.create_user_config(request.user)
         if country:
             user_config.country = country
         if news_sources:

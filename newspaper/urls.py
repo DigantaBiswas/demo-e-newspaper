@@ -6,7 +6,7 @@ from newspaper.views.personalized_newsfeed_api_view import PersonalizedNewsFeedA
 #
 
 urlpatterns = [
-    path('api/personalized-news/', PersonalizedNewsFeedApiView.as_view(), name="personalized-news"),
+    path('api/personalized-news/', PersonalizedNewsFeedApiView.as_view(), name="personalized-news_api"),
     path('personalized-news/', PersonalizedNewsFeedView.as_view(), name="personalized-news"),
 
 ]

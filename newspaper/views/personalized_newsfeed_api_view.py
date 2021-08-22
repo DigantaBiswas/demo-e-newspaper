@@ -16,6 +16,7 @@ from newspaper.serializers import NewsArticleSerializer
 class BasicPagination(PageNumberPagination):
     page_size_query_param = 'limit'
 
+
 class PersonalizedNewsFeedApiView(APIView, PaginationHandlerMixin):
     # authentication_classes = [authentication.TokenAuthentication]
     # permission_classes = [permissions.IsAuthenticated]
@@ -28,13 +29,27 @@ class PersonalizedNewsFeedApiView(APIView, PaginationHandlerMixin):
         news_articles = NewsArticles.objects.all()
         if config:
             if config.news_sources:
-                news_articles = news_articles.filter(sources__icontains=config.news_sources.split(","))
+                or_query = None
+                for _value in config.news_sources.split(","):
+                    q = Q(sources__icontains=_value)
+                    if or_query is None:
+                        or_query = q
+                    else:
+                        or_query |= q
+                news_articles = news_articles.filter(or_query)
 
             if config.news_keywords:
-                news_articles = news_articles.filter(Q(sources__icontains=config.news_keywords.split(",")) | Q(
-                    headline__icontains=config.news_keywords.split(",")) | Q(
-                    description__icontains=config.news_keywords.split(",")) | Q(
-                    content__icontains=config.news_keywords.split(",")))
+                or_query = None
+                for _value in config.news_keywords.split(","):
+
+                    q = Q(headline__icontains=_value) | Q(description__icontains=_value) | Q(
+                        content__icontains=_value) | Q(sources__icontains=_value)
+
+                    if or_query is None:
+                        or_query = q
+                    else:
+                        or_query |= q
+                news_articles = news_articles.filter(or_query)
 
         page = self.paginate_queryset(news_articles)
         if page is not None:
@@ -43,7 +58,6 @@ class PersonalizedNewsFeedApiView(APIView, PaginationHandlerMixin):
         else:
             serializer = self.serializer_class(news_articles, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
 
         # news_serializer = NewsArticleSerializer(news_articles, many=True)
         #

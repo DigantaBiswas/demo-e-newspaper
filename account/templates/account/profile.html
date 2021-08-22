@@ -9,11 +9,11 @@
         <div class="row">
             <div class="col">
                 <form method="POST">{% csrf_token %}
-                    <input class="form-control" name="country" type="text" placeholder="Default input"
+                    <input class="form-control" name="country" type="text" placeholder="Input country like : us,ca,ch"
                            value="{{ user_config.country }}">
-                    <input class="form-control" type="text" placeholder="Default input" name="news_sources"
+                    <input class="form-control" type="text" placeholder="Input news source like : ABC News, BBC News" name="news_sources"
                            value="{{ user_config.news_sources }}">
-                    <input class="form-control" type="text" placeholder="Default input" name="news_keywords"
+                    <input class="form-control" type="text" placeholder="Input keywords like: covid, afganistan" name="news_keywords"
                            value="{{ user_config.news_keywords }}">
                     <button type="submit" class="btn btn-secondary">Submit</button>
                 </form>
