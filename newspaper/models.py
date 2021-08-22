@@ -4,6 +4,7 @@ from django.db import models
 from newsapi import NewsApiClient
 
 from base.models import BaseAbstractModel
+from demo_e_newspaper.settings import news_api_key
 
 
 class NewsArticles(BaseAbstractModel):
@@ -21,7 +22,7 @@ class NewsArticles(BaseAbstractModel):
 
     @staticmethod
     def news_api_fetch_top_headline_with_country_source(country="us", sources="bbc-news,the-verge", q=None):
-        newsapi = NewsApiClient(api_key='158c339162d945d38f981a53096b103e')
+        newsapi = NewsApiClient(api_key=news_api_key)
 
 
 

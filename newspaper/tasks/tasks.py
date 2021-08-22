@@ -5,9 +5,13 @@ from datetime import datetime
 from celery import shared_task
 from celery import app
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from newsapi import NewsApiClient
 from pytz import utc
 
+from account.models import UserBasedNewsConfig
 from demo_e_newspaper.celery import app
+from demo_e_newspaper.settings import EMAIL_HOST_USER, news_api_key
 from newspaper.models import NewsArticles
 
 
@@ -53,3 +57,16 @@ def schedule_populate_news_data():
                new_object.content = content
                new_object.published_at = published_datetime_object
                new_object.save()
+
+
+# @shared_task()
+# def schedule_email_notification():
+#     newsapi = NewsApiClient(api_key=news_api_key)
+#     for config in UserBasedNewsConfig:
+#         top_headlines = newsapi.get_top_headlines(language='en', q=config.news_keywords)
+#         articles = top_headlines.get("articles")
+#         if articles:
+#             for article in articles:
+#                 url = article.get("url")
+#                 headline = article.get("title")
+

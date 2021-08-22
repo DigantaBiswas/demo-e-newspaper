@@ -149,3 +149,6 @@ CELERY_IMPORTS = [
     'newspaper.tasks.tasks'
 ]
 LOGIN_REDIRECT_URL = '/'
+
+
+news_api_key='158c339162d945d38f981a53096b103e'
