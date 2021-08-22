@@ -49,15 +49,14 @@ celery -A demo_e_newspaper worker --beat -l info -S django
 
 ## Important Api list 
 ```bash
-    path('api/user/', CustomUserApiView.as_view(), name='user'), #user list
-    path('api/user/<pk>/', CustomUserApiDetailView.as_view(), name='user_detail'), #user details
-    path('api/user-settings/', UserBasedNewsConfigApiView.as_view(), name="user_settings"),#user filtering config list
-    path('api/user-settings/<pk>/', UserBasedNewsConfigApiDetailView.as_view(), 
-         name="user_settings_detail"),# user's filter details edit 
-    path('api/token-auth/', obtain_auth_token, name='api_token_auth'), #token based authentication
-    path('api/logout/', LogoutApiView.as_view()), #distroy api token
+    'accounts/api/user/' #user list
+    'accounts/api/user/<pk>/' #user details
+    'accounts/api/user-settings/' #user filtering config list
+    'accounts/api/user-settings/<pk>/'# user's filter details edit 
+    'accounts/api/token-auth/' #token based authentication
+    'accounts/api/logout/' #distroy api token
 
-    path('api/personalized-news/', PersonalizedNewsFeedApiView.as_view(), name="personalized-news_api"), #get personalized news api 
+    'newspaper/api/personalized-news/' #get personalized news api 
 ```
 
 ## Note
